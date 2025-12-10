@@ -41,25 +41,28 @@ export default function Login() {
     return (
         <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
             {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-violet-500/10 rounded-full blur-[100px]"></div>
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-500/10 rounded-full blur-[120px] animate-pulse"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
             </div>
 
             <div className="w-full max-w-md animate-enter">
                 <div className="text-center mb-8">
-                    <h1 className="text-6xl font-bold bg-gradient-to-r from-indigo-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent mb-3 tracking-tight">
+                    <div className="inline-block p-3 rounded-2xl bg-gradient-to-tr from-primary-500/20 to-secondary-500/20 mb-4 border border-white/5 backdrop-blur-xl">
+                        <span className="text-4xl">✨</span>
+                    </div>
+                    <h1 className="text-6xl font-extrabold bg-gradient-to-r from-primary-300 via-secondary-300 to-primary-300 bg-clip-text text-transparent mb-2 tracking-tight">
                         Ejuem
                     </h1>
-                    <p className="text-slate-400 text-lg">Experiencia Gastronómica</p>
+                    <p className="text-slate-400 text-lg font-light">Experiencia Gastronómica Premium</p>
                 </div>
 
-                <Card className="border-t border-slate-700/50">
-                    <div className="flex p-1 bg-slate-900/50 rounded-xl mb-8">
+                <Card className="border-t border-white/10 glass-strong">
+                    <div className="flex p-1 bg-slate-950/50 rounded-xl mb-8 border border-white/5">
                         <button
                             onClick={() => setIsLogin(true)}
                             className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-300 ${isLogin
-                                ? 'bg-slate-800 text-white shadow-lg'
+                                ? 'bg-slate-800 text-white shadow-lg shadow-black/20'
                                 : 'text-slate-400 hover:text-slate-200'
                                 }`}
                         >
@@ -68,7 +71,7 @@ export default function Login() {
                         <button
                             onClick={() => setIsLogin(false)}
                             className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-300 ${!isLogin
-                                ? 'bg-slate-800 text-white shadow-lg'
+                                ? 'bg-slate-800 text-white shadow-lg shadow-black/20'
                                 : 'text-slate-400 hover:text-slate-200'
                                 }`}
                         >
@@ -119,7 +122,7 @@ export default function Login() {
                         </div>
 
                         {!isLogin && (
-                            <div className="space-y-1.5 animate-enter animate-delay-100">
+                            <div className="space-y-1.5 animate-enter delay-100">
                                 <label className="text-sm font-medium text-slate-300 ml-1">
                                     Tipo de Cuenta
                                 </label>
@@ -127,7 +130,7 @@ export default function Login() {
                                     <select
                                         value={role}
                                         onChange={(e) => setRole(e.target.value)}
-                                        className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 appearance-none"
+                                        className="w-full bg-slate-950/30 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500/50 appearance-none hover:border-white/20 transition-colors"
                                     >
                                         <option value="cliente">Cliente</option>
                                         <option value="mesero">Mesero</option>
@@ -154,16 +157,16 @@ export default function Login() {
                         <Button
                             type="submit"
                             isLoading={loading}
-                            className="w-full mt-2"
+                            className="w-full mt-4 py-3 text-lg shadow-xl shadow-primary-500/20"
                         >
                             {isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
                         </Button>
                     </form>
 
-                    <div className="mt-8 text-center">
+                    <div className="mt-8 text-center border-t border-white/5 pt-6">
                         <button
                             onClick={() => navigate('/menu')}
-                            className="text-slate-400 hover:text-indigo-400 text-sm transition-colors flex items-center justify-center gap-1 mx-auto group"
+                            className="text-slate-400 hover:text-primary-400 text-sm transition-colors flex items-center justify-center gap-2 mx-auto group font-medium"
                         >
                             <span>Continuar como invitado</span>
                             <span className="group-hover:translate-x-1 transition-transform">→</span>

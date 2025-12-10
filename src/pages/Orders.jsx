@@ -74,15 +74,15 @@ export default function Orders() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-950">
-                <div className="w-12 h-12 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin"></div>
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-primary-500/30 border-t-primary-500 rounded-full animate-spin"></div>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 pb-20">
-            <header className="glass sticky top-0 z-40 border-b border-indigo-500/10">
+        <div className="min-h-screen pb-20">
+            <header className="glass-strong sticky top-0 z-40 border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-4 py-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -103,14 +103,14 @@ export default function Orders() {
             <div className="max-w-4xl mx-auto px-4 py-8 animate-enter">
                 {orders.length === 0 ? (
                     <div className="text-center py-20">
-                        <div className="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                        <div className="w-20 h-20 bg-slate-800/50 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl border border-white/5">
                             📝
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2">No tienes pedidos aún</h3>
                         <p className="text-slate-400 mb-8 max-w-sm mx-auto">
                             Explora nuestro menú y disfruta de los mejores platillos preparados para ti.
                         </p>
-                        <Button onClick={() => navigate('/menu')} variant="primary" className="px-8">
+                        <Button onClick={() => navigate('/menu')} variant="primary" className="px-8 shadow-xl shadow-primary-500/20">
                             Hacer un Pedido
                         </Button>
                     </div>
@@ -119,12 +119,12 @@ export default function Orders() {
                         {orders.map((order, index) => (
                             <Card
                                 key={order.id}
-                                className="animate-enter"
+                                className="animate-enter glass-card border border-white/5"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
                                     <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-2xl shrink-0">
+                                        <div className="w-12 h-12 rounded-xl bg-slate-800/50 flex items-center justify-center text-2xl shrink-0 border border-white/5">
                                             {order.type === 'transporte' ? '🛵' : order.type === 'recojer' ? '🏃' : '🛍️'}
                                         </div>
                                         <div>
@@ -143,7 +143,7 @@ export default function Orders() {
                                     </Badge>
                                 </div>
 
-                                <div className="bg-slate-900/50 rounded-xl p-4 space-y-3 mb-6 border border-slate-800/50">
+                                <div className="bg-slate-900/40 rounded-xl p-4 space-y-3 mb-6 border border-white/5">
                                     {order.order_items?.map((item) => (
                                         <div
                                             key={item.id}
@@ -165,13 +165,13 @@ export default function Orders() {
                                 </div>
 
                                 <div className="flex items-center justify-between pt-2">
-                                    <div className="flex items-center gap-2 text-sm text-slate-400 bg-slate-900/50 px-3 py-1 rounded-lg">
+                                    <div className="flex items-center gap-2 text-sm text-slate-400 bg-slate-900/30 px-3 py-1 rounded-lg border border-white/5">
                                         <span>Tipo:</span>
                                         <span className="text-slate-200 font-medium capitalize">{order.type.replace('_', ' ')}</span>
                                     </div>
                                     <div className="text-right">
                                         <div className="text-sm text-slate-500 mb-0.5">Total a Pagar</div>
-                                        <div className="text-2xl font-bold text-indigo-400 font-mono">
+                                        <div className="text-2xl font-bold text-primary-400 font-mono">
                                             ${order.total_price.toFixed(2)}
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@ export default function Orders() {
 
                                 {/* Status update buttons for admin/mesero */}
                                 {user?.user_metadata?.role !== 'cliente' && order.status !== 'entregado' && order.status !== 'cancelado' && (
-                                    <div className="mt-6 pt-4 border-t border-slate-800/50 flex flex-wrap gap-2">
+                                    <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2">
                                         {order.status === 'pendiente' && (
                                             <Button
                                                 onClick={() => updateOrderStatus(order.id, 'en_preparacion')}
